@@ -1,0 +1,27 @@
+name: "Prerequisites"
+description: "Install sccache."
+runs:
+  using: "composite"
+  steps:
+    - run: wget https://github.com/mozilla/sccache/releases/download/v$SCCACHE_VERSION/sccache-v$SCCACHE_VERSION-x86_64-unknown-linux-musl.tar.gz
+      env:
+        SCCACHE_VERSION: "0.2.15"
+      shell: bash
+
+    - run: tar -xf sccache-v$SCCACHE_VERSION-x86_64-unknown-linux-musl.tar.gz
+      env:
+        SCCACHE_VERSION: "0.2.15"
+      shell: bash
+
+    - run: mv sccache-v$SCCACHE_VERSION-x86_64-unknown-linux-musl/sccache /usr/local/bin/sccache
+      env:
+        SCCACHE_VERSION: "0.2.15"
+      shell: bash
+
+    - run: chmod +x /usr/local/bin/sccache
+      shell: bash
+
+    - run: rm -rf sccache-v$SCCACHE_VERSION-x86_64-unknown-linux-musl*
+      env:
+        SCCACHE_VERSION: "0.2.15"
+      shell: bash
